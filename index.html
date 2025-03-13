@@ -42,8 +42,8 @@
             border-radius: 5px;
             padding: 20px;
             grid-column: span 4;
-            overflow-x: auto; /* 横にスクロール可能にして文字がはみ出ないように */
-            white-space: nowrap; /* テキストが折り返しされないように */
+            overflow-x: auto;
+            white-space: nowrap;
         }
 
         button {
@@ -106,7 +106,9 @@
 
     function calculateResult() {
         try {
-            const result = eval(document.getElementById('result').value);
+            let result = eval(document.getElementById('result').value);
+            // 浮動小数点の誤差を修正
+            result = parseFloat(result.toFixed(8)); // 小数点以下8桁で丸め
             document.getElementById('result').value = result;
         } catch (error) {
             document.getElementById('result').value = 'Error';
